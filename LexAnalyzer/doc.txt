@@ -1,5 +1,8 @@
-while( var ) 
-     outherVar=-2.2445 * 543; 
-     teste = var1+var2
-     if ( 2 > 1 or 1 < 2 and 2 == 2)
-         arara32 = outherVar# - 1234;
+int x= 10*25;
+float y=x;
+String word=oi;
+int dr#as;
+While(y>10){
+	int var1 = x+y;
+	Word=word+"oi";
+}

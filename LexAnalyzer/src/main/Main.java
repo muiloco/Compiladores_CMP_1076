@@ -24,7 +24,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        String url = "C:\\Users\\Pichau\\Desktop\\Coisa faculdade\\Compiladores\\LexAnalyzer\\doc.txt";
+        String url = "doc.txt";
         FileReader arquivo = new FileReader(url);
         BufferedReader arquivoLer = new BufferedReader(arquivo);
         String linha;
@@ -33,15 +33,17 @@ public class Main {
         {
             doc+=linha; 
         }
-        String texto[] = doc.split("(\\w)");
+        String texto[] = doc.split("\\W+\\d");
         for (String tex : texto){
-            System.out.println(tex);
+            if(!tex.equals(" ")){
+                System.out.println(tex);
+            }
         }
 //        String nocarc[] = null;
-//        for (int i = 0; i < texto.length; i++) {
+//        for (int i = 0; i < texto.length; i++) { ((|)|,|;|.|<|>|==|=|<=|>=|!=|+|*|-|%|/|^)|\\s+]
 //            String x = texto[i];
 //            nocarc[i]=x.split("\\W");
-//        }
+//        }[(,),;,.,<,>,==,=,<=,>=,!=,+,*,-,%,/,^
         
 //        boolean x;
 //        for (String dado : dados) {
