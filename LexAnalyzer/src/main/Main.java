@@ -33,7 +33,8 @@ public class Main {
         {
             doc+=linha; 
         }
-        String texto[] = doc.split("[^a-zA-Z]([^0-9]|[^a-zA-Z])*");
+        Pattern x = Pattern.compile("[(a-zA-Z)[(a-zA-Z)|(0-9)]*]");
+        String texto[] = x.split(doc);
         for (String tex : texto){
             if(!tex.equals(" ")){
                 System.out.println(tex);
