@@ -33,7 +33,7 @@ public class Main {
         {
             doc+=linha; 
         }
-        String texto[] = doc.split("\\W+\\d");
+        String texto[] = doc.split("[^a-zA-Z]+[^0-9*]");
         for (String tex : texto){
             if(!tex.equals(" ")){
                 System.out.println(tex);

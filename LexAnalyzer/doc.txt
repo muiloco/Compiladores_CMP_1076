@@ -1,8 +1,8 @@
 int x= 10*25;
-float y=x;
+float y=-52;
 String word=oi;
 int dr#as;
 While(y>10){
 	int var1 = x+y;
-	Word=word+"oi";
+	word=word+oi;
 }
