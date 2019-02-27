@@ -33,13 +33,14 @@ public class Main {
         {
             doc+=linha; 
         }
-        Pattern x = Pattern.compile("[(a-zA-Z)[(a-zA-Z)|(0-9)]*]");
-        String texto[] = x.split(doc);
-        for (String tex : texto){
-            if(!tex.equals(" ")){
-                System.out.println(tex);
-            }
-        }
+        System.out.println(doc);
+//        Pattern x = Pattern.compile("^([a-zA-Z]([a-zA-Z]|[0-9])*)");
+//        String texto[] = Pattern.compile("([^a-zA-Z]([^a-zA-Z]|^0-9)*)").split(doc);
+//        for (String tex : texto){
+//            if(!tex.equals(" ")){
+//                System.out.println(tex);
+//            }
+//        }
 //        String nocarc[] = null;
 //        for (int i = 0; i < texto.length; i++) { ((|)|,|;|.|<|>|==|=|<=|>=|!=|+|*|-|%|/|^)|\\s+]
 //            String x = texto[i];
