@@ -28,12 +28,28 @@ public class Main {
         FileReader arquivo = new FileReader(url);
         BufferedReader arquivoLer = new BufferedReader(arquivo);
         String linha;
+        int i =0;
         String doc = "";
         while((linha = arquivoLer.readLine()) != null)
         {
             doc+=linha; 
         }
-        System.out.println(doc);
+        String x[]=doc.split("\\s+");
+        String id[]=null;
+        while (i<x.length) {
+            if(Pattern.compile("([a-zA-Z][(a-zA-Z|0-9)]*)").matcher(x[i]).matches())
+            {
+                String word = x[i];
+                Pattern regex = Pattern.compile("[0-9]+");
+                System.out.println(regex.pattern());
+                id=regex.split(word);
+            }
+            if(Pattern.compile("[a-zA-Z]+").matcher(x[i]).matches()){
+                
+            }
+            i++;
+        }
+         System.out.println("teste - "+ id[1]);
 //        Pattern x = Pattern.compile("^([a-zA-Z]([a-zA-Z]|[0-9])*)");
 //        String texto[] = Pattern.compile("([^a-zA-Z]([^a-zA-Z]|^0-9)*)").split(doc);
 //        for (String tex : texto){
