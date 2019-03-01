@@ -10,5 +10,11 @@ package main;
  * @author Fernando R
  */
 public class Token {
-    
+    String Token;
+    String Valor;
+
+    public Token(String Token, String Valor) {
+        this.Token = Token;
+        this.Valor = Valor;
+    }
 }
