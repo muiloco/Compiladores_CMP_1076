@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,10 @@ import java.util.regex.Pattern;
 
 public class Main {
 
+    public static boolean palavrasReservadas(String palavra){
+        return true;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -27,62 +32,34 @@ public class Main {
         String url = "doc.txt";
         FileReader arquivo = new FileReader(url);
         BufferedReader arquivoLer = new BufferedReader(arquivo);
+        Pattern regexID = Pattern.compile("([(a-zA-Z)][(a-zA-Z)|(0-9)]*)");
+        Matcher rid;
         String linha;
-        int i =0;
         String doc = "";
         while((linha = arquivoLer.readLine()) != null)
         {
             doc+=linha; 
         }
-        String x[]=doc.split("\\s|;");
-        String id[]=null;
-        Pattern regex = Pattern.compile("([(a-zA-Z)][(a-zA-Z)|(0-9)]*)");
-        while (i<id.length) {
-            System.out.println(id[i]);
-//            if(Pattern.compile("([a-zA-Z][(a-zA-Z|0-9)]*)").matcher(x[i]).matches())
-//            {
-//                String word = x[i];
-//                Pattern regex = Pattern.compile("[0-9]+");
-//                System.out.println(regex.pattern());
-//                id=regex.split(word);
-//            }
-//            if(Pattern.compile("[a-zA-Z]+").matcher(x[i]).matches()){
-//                
-//            }
-            i++;
-            //System.out.println("teste - "+ id[i]);
+        ArrayList<Token> listaDeToken = new ArrayList<>();
+        String texto[]=doc.split("\\s+");
+        String teste=null;
+        for (int i = 0; i < texto.length; i++) {
+            rid=regexID.matcher(texto[i]);
+            if(!texto[i].equals("")){
+                while (!texto[i].equals("")) {                    
+                    //comparacao para ID
+                    if(rid.find()){
+                        if (palavrasReservadas(rid.group(1))) {
+                            
+                        } else {
+                            Token lex=new Token("ID", rid.group(1));
+                            listaDeToken.add(lex);
+                            texto[i]=texto[i].replaceFirst(rid.group(1), "");
+                        }
+                    }
+                }
+            }
         }
-         
-//        Pattern x = Pattern.compile("^([a-zA-Z]([a-zA-Z]|[0-9])*)");
-//        String texto[] = Pattern.compile("([^a-zA-Z]([^a-zA-Z]|^0-9)*)").split(doc);
-//        for (String tex : texto){
-//            if(!tex.equals(" ")){
-//                System.out.println(tex);
-//            }
-//        }
-//        String nocarc[] = null;
-//        for (int i = 0; i < texto.length; i++) { ((|)|,|;|.|<|>|==|=|<=|>=|!=|+|*|-|%|/|^)|\\s+]
-//            String x = texto[i];
-//            nocarc[i]=x.split("\\W");
-//        }[(,),;,.,<,>,==,=,<=,>=,!=,+,*,-,%,/,^
-        
-//        boolean x;
-//        for (String dado : dados) {
-//            x = Pattern.compile("^([a-zA-Z]([a-zA-Z]|\\d)*)").matcher(dado).matches();
-//            System.out.println(dado);
-//        }
-//        for (int i=0 ; i<dados[3].length();i++){
-//            //System.out.println(dados[3].charAt(i));
-//        }
-//        boolean x = Pattern.compile("^([a-zA-Z]([a-zA-Z]|\\d)*)").matcher(dados[4]).matches();
-//        System.out.println(x);
-//        boolean a = Pattern.compile("[a-zA-Z]*").matcher(teste).matches();
-//        Matcher b = a.matcher(teste);
-//        String[] slipt1 = teste.split("\[a-z]");
-//        String[] slipt1 = teste.split(Pattern.compile("[a-zA-Z]*").matcher(teste));
-//        System.out.println(slipt1.length);
-//        System.out.println(a);
-//        ((dados[3].charAt(i)>='a' && dados[3].charAt(i)<='z')||(dados[3].charAt(i)>='A' && dados[3].charAt(i)<='Z'))
     }
     
 }
