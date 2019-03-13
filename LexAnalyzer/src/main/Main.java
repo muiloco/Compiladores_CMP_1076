@@ -22,7 +22,10 @@ import java.util.regex.Pattern;
 public class Main {
 
     public static boolean palavrasReservadas(String palavra){
-        return true;
+       switch(palavra.toUpperCase()){
+           case :
+               
+       }
     }
     
     /**
@@ -32,7 +35,6 @@ public class Main {
         String url = "doc.txt";
         FileReader arquivo = new FileReader(url);
         BufferedReader arquivoLer = new BufferedReader(arquivo);
-        Pattern regexID = Pattern.compile("([(a-zA-Z)][(a-zA-Z)|(0-9)]*)");
         Matcher rid;
         String linha;
         String doc = "";
@@ -42,9 +44,8 @@ public class Main {
         }
         ArrayList<Token> listaDeToken = new ArrayList<>();
         String texto[]=doc.split("\\s+");
-        String teste=null;
         for (int i = 0; i < texto.length; i++) {
-            rid=regexID.matcher(texto[i]);
+            rid=Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
             if(!texto[i].equals("")){
                 while (!texto[i].equals("")) {                    
                     //comparacao para ID
