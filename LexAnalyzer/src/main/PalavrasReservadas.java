@@ -27,4 +27,38 @@ public enum PalavrasReservadas {
         return descricao;
     }
     
+    public static boolean Ereservada(String palavra) {
+        if (palavra.equals(IF.getDescricao())) {
+            return true;
+        } else if (palavra.equals(ELSE.getDescricao())) {
+            return true;
+        } else if (palavra.equals(AND.getDescricao())) {
+            return true;
+        } else if (palavra.equals(OR.getDescricao())) {
+            return true;
+        } else if (palavra.equals(NOT.getDescricao())) {
+            return true;
+        } else if (palavra.equals(WHILE.getDescricao())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static String ReturnReservada(String palavra){
+         if (palavra.equals(IF.getDescricao())) {
+            return IF.getDescricao();
+        } else if (palavra.equals(ELSE.getDescricao())) {
+            return ELSE.getDescricao();
+        } else if (palavra.equals(AND.getDescricao())) {
+            return AND.getDescricao();
+        } else if (palavra.equals(OR.getDescricao())) {
+            return OR.getDescricao();
+        } else if (palavra.equals(NOT.getDescricao())) {
+            return NOT.getDescricao();
+        } else  {
+            return WHILE.getDescricao();
+        }
+    }
+
 }

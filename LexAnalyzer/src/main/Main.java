@@ -5,7 +5,6 @@
  */
 package main;
 
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,16 +17,8 @@ import java.util.regex.Pattern;
  *
  * @author Fernando R
  */
-
 public class Main {
 
-    public static boolean palavrasReservadas(String palavra){
-       switch(palavra.toUpperCase()){
-           case :
-               
-       }
-    }
-    
     /**
      * @param args the command line arguments
      */
@@ -38,29 +29,24 @@ public class Main {
         Matcher rid;
         String linha;
         String doc = "";
-        while((linha = arquivoLer.readLine()) != null)
-        {
-            doc+=linha; 
+        while ((linha = arquivoLer.readLine()) != null) {
+            doc += linha;
         }
         ArrayList<Token> listaDeToken = new ArrayList<>();
-        String texto[]=doc.split("\\s+");
-        for (int i = 0; i < texto.length; i++) {
-            rid=Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
-            if(!texto[i].equals("")){
-                while (!texto[i].equals("")) {                    
-                    //comparacao para ID
-                    if(rid.find()){
-                        if (palavrasReservadas(rid.group(1))) {
-                            
-                        } else {
-                            Token lex=new Token("ID", rid.group(1));
-                            listaDeToken.add(lex);
-                            texto[i]=texto[i].replaceFirst(rid.group(1), "");
-                        }
-                    }
-                }
-            }
-        }
+        String texto[] = doc.split("\\s+");
+//        for (int i = 0; i < texto.length; i++) {
+//            rid = Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
+//            if (!texto[i].equals("")) {
+//                while (!texto[i].equals("")) {
+//                    //comparacao para ID
+//                    if (rid.find()) {
+//                        Token lex = new Token("ID", rid.group(1));
+//                        listaDeToken.add(lex);
+//                        texto[i] = texto[i].replaceFirst(rid.group(1), "");
+//                    }
+//                }
+//            }
+//        }
+        
     }
-    
 }

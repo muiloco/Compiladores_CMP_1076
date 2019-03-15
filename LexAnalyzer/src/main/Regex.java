@@ -12,10 +12,10 @@ package main;
 public enum Regex {
     ID("^([(a-zA-Z)][(a-zA-Z)|(0-9)]*)"),
     NUM("^((-?)(\\d+)((\\.\\d+)?))"),
-    MAIORIGUAL("<="),
-    MENORIGUAL(">="),
-    IGUAL("=="),
-    DIFERENTE("!=");
+    MAIORIGUAL("^(<=)"),
+    MENORIGUAL("^(>=)"),
+    IGUAL("^(==)"),
+    DIFERENTE("^(!=)");
     
     String descricao;
 
