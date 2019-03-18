@@ -17,4 +17,13 @@ public class Token {
         this.Token = Token;
         this.Valor = Valor;
     }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public String getValor() {
+        return Valor;
+    }
+    
 }

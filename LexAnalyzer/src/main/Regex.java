@@ -15,7 +15,9 @@ public enum Regex {
     MAIORIGUAL("^(<=)"),
     MENORIGUAL("^(>=)"),
     IGUAL("^(==)"),
-    DIFERENTE("^(!=)");
+    DIFERENTE("^(!=)"),
+    MAIOR("^(<)"),
+    MENOR("^(>)");
     
     String descricao;
 
