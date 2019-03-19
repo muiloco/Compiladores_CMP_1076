@@ -1,4 +1,4 @@
-int x= 10*25;
+int x= *25;
 float y=-52;
 String word=oi;
 int dras;

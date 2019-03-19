@@ -43,156 +43,143 @@ public class Lexer {
     public static void LexAnalyzer(String doc) {
         Lexer.listaDeToken = new ArrayList<>();
         Lexer.variaveis = new HashMap<>();
-        String texto[] = doc.split("\\s+");
-        Matcher regra;
+        String texto[] = doc.split(" ");
+        String espa="";
+        Matcher regraID, regraNUM, regraDIF, regraIG, regraMAI, regraMEI;
         System.out.println("ate aqui veio!!");
         for (int i = 0; i <= texto.length; i++) {
+            regraID = Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
+            regraNUM = Pattern.compile(Regex.NUM.getDescricao()).matcher(texto[i]);
+            regraDIF = Pattern.compile(Regex.DIFERENTE.getDescricao()).matcher(texto[i]);
+            regraIG = Pattern.compile(Regex.IGUAL.getDescricao()).matcher(texto[i]);
+            regraMAI = Pattern.compile(Regex.MAIORIGUAL.getDescricao()).matcher(texto[i]);
+            regraMEI = Pattern.compile(Regex.MENORIGUAL.getDescricao()).matcher(texto[i]);
             if (!texto[i].equals("")) {
                 while (!texto[i].equals("")) {
-                    regra = Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        if (PalavrasReservadas.Ereservada(regra.group(1).toUpperCase())) {
-                            String id = regra.group(1);
+                    if (regraID.find()) {
+                        if (PalavrasReservadas.Ereservada(regraID.group(1).toUpperCase())) {
+                            String id = regraID.group(1);
                             addToken(PalavrasReservadas.ReturnReservada(id.toUpperCase()), doc);
                             texto[i] = texto[i].replaceFirst(id, "");
-                            System.out.println(regra.group(1));
+                            System.out.println(regraID.group(1));
                         } else {
-                            String id = regra.group(1);
-                            addToken(Regex.ID.toString(), regra.group(1));
+                            String id = regraID.group(1);
+                            addToken(Regex.ID.toString(), regraID.group(1));
                             addHash(id, "0");
                             texto[i] = texto[i].replaceFirst(id, "");
-                            System.out.println(regra.group(1));
+                            System.out.println(regraID.group(1));
                         }
                     }
-                    regra = Pattern.compile(Regex.NUM.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken(Regex.NUM.toString(), regra.group(1));
+                    else if (regraNUM.find()) {
+                        String id = regraNUM.group(1);
+                        addToken(Regex.NUM.toString(), regraNUM.group(1));
                         texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                        System.out.println(regraNUM.group(1));
                     }
-                    regra = Pattern.compile(Regex.DIFERENTE.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
+                    else if (regraDIF.find()) {
+                        String id = regraDIF.group(1);
+                        addToken("OPR_REL", regraDIF.group(1));
                         texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                        System.out.println(regraDIF.group(1));
                     }
-                    regra = Pattern.compile(Regex.IGUAL.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
+                    else if (regraIG.find()) {
+                        String id = regraIG.group(1);
+                        addToken("OPR_REL", regraIG.group(1));
                         texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                        System.out.println(regraIG.group(1));
                     }
-                    regra = Pattern.compile(Regex.MAIORIGUAL.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
+                    else if (regraMAI.find()) {
+                        String id = regraMAI.group(1);
+                        addToken("OPR_REL", regraMAI.group(1));
                         texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                        System.out.println(regraMAI.group(1));
                     }
-                    regra = Pattern.compile(Regex.MENORIGUAL.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
+                    else if (regraMEI.find()) {
+                        String id = regraMEI.group(1);
+                        addToken("OPR_REL", regraMEI.group(1));
                         texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                        System.out.println(regraMEI.group(1));
                     }
-                    regra = Pattern.compile(Regex.MENOR.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '<') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_REL", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile(Regex.MAIOR.getDescricao()).matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_REL", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '>') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_REL", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\=)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("ATRIB", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '=') {
+                        char id = texto[i].charAt(0);
+                        addToken("ATRIB", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\+)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_AR", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '+') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_AR", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("/*^(\\*)*/").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_AR", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '*') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_AR", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\%)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_AR", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '%') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_AR", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\-)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_AR", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '-') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_AR", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\/)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("OPR_AR", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '/') {
+                        char id = texto[i].charAt(0);
+                        addToken("OPR_AR", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\()").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("DELIM", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == '(') {
+                        char id = texto[i].charAt(0);
+                        addToken("DELIM", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\))").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("DELIM", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == ')') {
+                        char id = texto[i].charAt(0);
+                        addToken("DELIM", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\,)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("DELIM", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == ',') {
+                        char id = texto[i].charAt(0);
+                        addToken("DELIM", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\;)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("DELIM", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
+                    else if (texto[i].charAt(0) == ';') {
+                        char id = texto[i].charAt(0);
+                        addToken("DELIM", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
                     }
-                    regra = Pattern.compile("^(\\.)").matcher(texto[i]);
-                    if (regra.find()) {
-                        String id = regra.group(1);
-                        addToken("DELIM", regra.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
-                        System.out.println(regra.group(1));
-                    }
-                    else{
+                    else if (texto[i].charAt(0) == '.') {
+                        char id = texto[i].charAt(0);
+                        addToken("DELIM", String.valueOf(id));
+                        texto[i] = texto[i].substring(1);
+                        System.out.println(String.valueOf(id));
+                    } else {
                         String id = texto[i];
-                        System.out.println("Erro:---"+id);
+                        System.out.println("Erro:---" + id);
                         i++;
                     }
                 }
