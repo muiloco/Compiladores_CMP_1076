@@ -11,7 +11,7 @@ package main;
  */
 public enum Regex {
     ID("^([(a-zA-Z)][(a-zA-Z)|(0-9)]*)"),
-    NUM("^((-?)(\\d+)((\\.\\d+)?))"),
+    NUM("^([\\-]?[0-9]+([\\.][0-9]+)?)"),
     MAIORIGUAL("^(<=)"),
     MENORIGUAL("^(>=)"),
     IGUAL("^(==)"),

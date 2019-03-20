@@ -28,7 +28,13 @@ public class Main {
         while ((linha = arquivoLer.readLine()) != null) {
             doc += linha;
         }
-        Lexer.LexAnalyzer(doc);
-        Lexer.imprimirLista();
+        doc = "asds";
+        System.out.println(doc.length());
+//        String texto [] = doc.split("\\s");
+//        for (int i = 0; i < texto.length; i++) {
+//            System.out.println(texto[i]);
+//        }
+//        Lexer.LexAnalyzer(doc);
+//        Lexer.imprimirLista();
     }
 }
