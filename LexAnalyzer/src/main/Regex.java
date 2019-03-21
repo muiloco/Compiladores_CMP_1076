@@ -10,7 +10,7 @@ package main;
  * @author Fernando R
  */
 public enum Regex {
-    ID("^([(a-zA-Z)][(a-zA-Z)|(0-9)]*)"),
+    ID("^([a-zA-Z]([a-zA-Z]|\\d)*)"),
     NUM("^([\\-]?[0-9]+([\\.][0-9]+)?)"),
     MAIORIGUAL("^(<=)"),
     MENORIGUAL("^(>=)"),

@@ -30,18 +30,18 @@ public class Main {
         while ((linha = arquivoLer.readLine()) != null) {
             doc += linha;
         }
-        String texto [] = doc.split("\\s");
-        Matcher regraNUM = Pattern.compile(Regex.NUM.getDescricao()).matcher("-25.05;algo25");
-        String t;
-        if (regraNUM.find()) {
-            t = regraNUM.group();
-            System.out.println(t);
-        }
-        
+//        String texto [] = doc.split("\\s+");
+//        Matcher regraNUM = Pattern.compile(Regex.ID.getDescricao()).matcher("float");
+//        String t;
+//        if (regraNUM.find()) {
+//            t = regraNUM.group();
+//            System.out.println(t);
+//       }
+       
 //        for (int i = 0; i < texto.length; i++) {
 //            System.out.println(texto[i]);
 //        }
-//        Lexer.LexAnalyzer(doc);
-//        Lexer.imprimirLista();
+        Lexer.LexAnalyzer(doc);
+        Lexer.imprimirLista();
     }
 }
