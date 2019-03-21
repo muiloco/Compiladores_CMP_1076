@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * @author Fernando R
@@ -28,9 +30,14 @@ public class Main {
         while ((linha = arquivoLer.readLine()) != null) {
             doc += linha;
         }
-        doc = "asds";
-        System.out.println(doc.length());
-//        String texto [] = doc.split("\\s");
+        String texto [] = doc.split("\\s");
+        Matcher regraNUM = Pattern.compile(Regex.NUM.getDescricao()).matcher("-25.05;algo25");
+        String t;
+        if (regraNUM.find()) {
+            t = regraNUM.group();
+            System.out.println(t);
+        }
+        
 //        for (int i = 0; i < texto.length; i++) {
 //            System.out.println(texto[i]);
 //        }

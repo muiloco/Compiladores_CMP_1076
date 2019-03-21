@@ -48,137 +48,138 @@ public class Lexer {
         Matcher regraID, regraNUM, regraDIF, regraIG, regraMAI, regraMEI;
         System.out.println("ate aqui veio!!");
         for (int i = 0; i <= texto.length; i++) {
-            regraID = Pattern.compile(Regex.ID.getDescricao()).matcher(texto[i]);
-            regraNUM = Pattern.compile(Regex.NUM.getDescricao()).matcher(texto[i]);
-            regraDIF = Pattern.compile(Regex.DIFERENTE.getDescricao()).matcher(texto[i]);
-            regraIG = Pattern.compile(Regex.IGUAL.getDescricao()).matcher(texto[i]);
-            regraMAI = Pattern.compile(Regex.MAIORIGUAL.getDescricao()).matcher(texto[i]);
-            regraMEI = Pattern.compile(Regex.MENORIGUAL.getDescricao()).matcher(texto[i]);
-            if (!texto[i].equals("")) {
-                while (!texto[i].equals("")) {
+            String fragmento = texto[i];
+            regraID = Pattern.compile(Regex.ID.getDescricao()).matcher(fragmento);
+            regraNUM = Pattern.compile(Regex.NUM.getDescricao()).matcher(fragmento);
+            regraDIF = Pattern.compile(Regex.DIFERENTE.getDescricao()).matcher(fragmento);
+            regraIG = Pattern.compile(Regex.IGUAL.getDescricao()).matcher(fragmento);
+            regraMAI = Pattern.compile(Regex.MAIORIGUAL.getDescricao()).matcher(fragmento);
+            regraMEI = Pattern.compile(Regex.MENORIGUAL.getDescricao()).matcher(fragmento);
+            if (fragmento.length() != 0) {
+                while (fragmento.length() != 0) {
                     if (regraID.find()) {
                         if (PalavrasReservadas.Ereservada(regraID.group(1).toUpperCase())) {
                             String id = regraID.group(1);
                             addToken(PalavrasReservadas.ReturnReservada(id.toUpperCase()), doc);
-                            texto[i] = texto[i].replaceFirst(id, "");
+                            fragmento = fragmento.replaceFirst(id, "");
                             System.out.println(regraID.group(1));
                         } else {
                             String id = regraID.group(1);
                             addToken(Regex.ID.toString(), regraID.group(1));
                             addHash(id, "0");
-                            texto[i] = texto[i].replaceFirst(id, "");
+                            fragmento = fragmento.replaceFirst(id, "");
                             System.out.println(regraID.group(1));
                         }
                     }
                     else if (regraNUM.find()) {
                         String id = regraNUM.group(1);
                         addToken(Regex.NUM.toString(), regraNUM.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
+                        fragmento = fragmento.replaceFirst(id, "");
                         System.out.println(regraNUM.group(1));
                     }
                     else if (regraDIF.find()) {
                         String id = regraDIF.group(1);
                         addToken("OPR_REL", regraDIF.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
+                        fragmento = fragmento.replaceFirst(id, "");
                         System.out.println(regraDIF.group(1));
                     }
                     else if (regraIG.find()) {
                         String id = regraIG.group(1);
                         addToken("OPR_REL", regraIG.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
+                        fragmento = fragmento.replaceFirst(id, "");
                         System.out.println(regraIG.group(1));
                     }
                     else if (regraMAI.find()) {
                         String id = regraMAI.group(1);
                         addToken("OPR_REL", regraMAI.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
+                        fragmento = fragmento.replaceFirst(id, "");
                         System.out.println(regraMAI.group(1));
                     }
                     else if (regraMEI.find()) {
                         String id = regraMEI.group(1);
                         addToken("OPR_REL", regraMEI.group(1));
-                        texto[i] = texto[i].replaceFirst(id, "");
+                        fragmento = fragmento.replaceFirst(id, "");
                         System.out.println(regraMEI.group(1));
                     }
-                    else if (texto[i].charAt(0) == '<') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '<') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_REL", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '>') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '>') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_REL", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '=') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '=') {
+                        char id = fragmento.charAt(0);
                         addToken("ATRIB", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '+') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '+') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_AR", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '*') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '*') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_AR", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '%') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '%') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_AR", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '-') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '-') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_AR", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '/') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '/') {
+                        char id = fragmento.charAt(0);
                         addToken("OPR_AR", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '(') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '(') {
+                        char id = fragmento.charAt(0);
                         addToken("DELIM", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == ')') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == ')') {
+                        char id = fragmento.charAt(0);
                         addToken("DELIM", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == ',') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == ',') {
+                        char id = fragmento.charAt(0);
                         addToken("DELIM", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == ';') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == ';') {
+                        char id = fragmento.charAt(0);
                         addToken("DELIM", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     }
-                    else if (texto[i].charAt(0) == '.') {
-                        char id = texto[i].charAt(0);
+                    else if (fragmento.charAt(0) == '.') {
+                        char id = fragmento.charAt(0);
                         addToken("DELIM", String.valueOf(id));
-                        texto[i] = texto[i].substring(1);
+                        fragmento = fragmento.substring(1);
                         System.out.println(String.valueOf(id));
                     } else {
-                        String id = texto[i];
+                        String id = fragmento;
                         System.out.println("Erro:---" + id);
                         i++;
                     }
