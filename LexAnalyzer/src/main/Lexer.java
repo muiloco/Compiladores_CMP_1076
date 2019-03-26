@@ -23,11 +23,11 @@ public class Lexer {
 
     }
 
-    public ArrayList<Token> getListaDeToken() {
+    public static ArrayList<Token> getListaDeToken() {
         return listaDeToken;
     }
 
-    public HashMap<String, String> getVariaveis() {
+    public static HashMap<String, String> getVariaveis() {
         return variaveis;
     }
 
@@ -145,5 +145,10 @@ public class Lexer {
             token = Lexer.listaDeToken.get(i);
             System.out.println(token.getToken() + ":" + token.getValor());
         }
+    }
+    
+    public static void imprimirHash() {
+        String x = Lexer.variaveis.toString();
+        System.out.println(x);
     }
 }
