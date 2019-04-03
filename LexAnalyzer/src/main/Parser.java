@@ -12,16 +12,38 @@ import java.util.ArrayList;
  * @author Fernando.Sousa
  */
 public class Parser {
+
     String entrada;
-    Lexer analisador;
+    ArrayList<Token> listaDeToken;
+    int pos;
 
     public Parser(String entrada) {
         this.entrada = entrada;
+        Lexer.LexAnalyzer(entrada);
+        this.listaDeToken = Lexer.getListaDeToken();
+        this.pos = -1;
     }
 
-    void Expressao(){
-        Lexer.LexAnalyzer(entrada);
-        ArrayList<Token> listaDeToken = Lexer.getListaDeToken();
+    Token nextToken() {
+        this.pos++;
+        return this.listaDeToken.get(this.pos);
     }
-    
+
+    //----------------------PRODUÇÕES---------------------
+    /*Lista.instruções -> instrução; Lista.instruções | E
+     */
+    void listaInstrucoes() {
+        Token token = nextToken();
+        if (token.getToken().equals("ID")) {
+            instrucao();
+
+        } else {
+
+        }
+    }
+
+    void instrucao() {
+
+    }
+
 }

@@ -15,8 +15,10 @@ public enum PalavrasReservadas {
     AND("OPR_LOG"),
     OR("OPR_LOG"),
     NOT("OPR_LOG"),
-    WHILE("WHILE");
-    
+    WHILE("WHILE"),
+    ESCREVA("ESCREVA"),
+    LEIA("LEIA");
+
     String descricao;
 
     private PalavrasReservadas(String descricao) {
@@ -26,7 +28,7 @@ public enum PalavrasReservadas {
     public String getDescricao() {
         return descricao;
     }
-    
+
     public static boolean Ereservada(String palavra) {
         if (palavra.equals(IF.getDescricao())) {
             return true;
@@ -40,13 +42,17 @@ public enum PalavrasReservadas {
             return true;
         } else if (palavra.equals(WHILE.getDescricao())) {
             return true;
+        } else if (palavra.equals(ESCREVA.getDescricao())) {
+            return true;
+        } else if (palavra.equals(LEIA.getDescricao())) {
+            return true;
         } else {
             return false;
         }
     }
-    
-    public static String ReturnReservada(String palavra){
-         if (palavra.equals(IF.getDescricao())) {
+
+    public static String ReturnReservada(String palavra) {
+        if (palavra.equals(IF.getDescricao())) {
             return IF.getDescricao();
         } else if (palavra.equals(ELSE.getDescricao())) {
             return ELSE.getDescricao();
@@ -56,7 +62,11 @@ public enum PalavrasReservadas {
             return OR.getDescricao();
         } else if (palavra.equals(NOT.getDescricao())) {
             return NOT.getDescricao();
-        } else  {
+        } else if (palavra.equals(ESCREVA.getDescricao())) {
+            return ESCREVA.getDescricao();
+        } else if (palavra.equals(LEIA.getDescricao())) {
+            return LEIA.getDescricao();
+        } else {
             return WHILE.getDescricao();
         }
     }
