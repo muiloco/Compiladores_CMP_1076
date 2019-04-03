@@ -46,7 +46,6 @@ public class Lexer {
         String texto[] = doc.split("\\s+");
         String espa = "";
         Matcher regraID, regraNUM, regraDIF, regraIG, regraMAI, regraMEI;
-        System.out.println("ate aqui veio!!");
         String item;
         char caracter;
         for (String fragmento : texto) {

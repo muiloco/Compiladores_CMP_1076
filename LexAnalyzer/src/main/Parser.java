@@ -6,6 +6,7 @@
 package main;
 
 import java.util.ArrayList;
+import jdk.nashorn.internal.ir.ContinueNode;
 
 /**
  *
@@ -16,34 +17,66 @@ public class Parser {
     String entrada;
     ArrayList<Token> listaDeToken;
     int pos;
+    Token token;
 
     public Parser(String entrada) {
         this.entrada = entrada;
         Lexer.LexAnalyzer(entrada);
         this.listaDeToken = Lexer.getListaDeToken();
-        this.pos = -1;
+        this.pos = 0;
+        this.token = this.listaDeToken.get(this.pos);
     }
 
-    Token nextToken() {
+    void nextToken() {
         this.pos++;
-        return this.listaDeToken.get(this.pos);
+        this.token = this.listaDeToken.get(this.pos);
     }
 
     //----------------------PRODUÇÕES---------------------
-    /*Lista.instruções -> instrução; Lista.instruções | E
+    /*Lista.instruções -> instrução ; Lista.instruções | E
      */
     void listaInstrucoes() {
-        Token token = nextToken();
-        if (token.getToken().equals("ID")) {
-            instrucao();
-
+        instrucao();
+        if (this.token.getToken().equals("DELIM")) {
+            nextToken();
+            listaInstrucoes();
+        } else if(this.listaDeToken.size() != this.pos-1) {
+            nextToken();
         } else {
-
+            System.out.println("erro");
         }
     }
-
+    /*
+    instrução -> ID = expressão
+              -> LEIA ID
+              -> ESCREVA expressão
+    */
+    
     void instrucao() {
-
+        switch (this.token.getToken()) {
+            case "ID":
+                nextToken();
+                if(this.token.getToken().equals("DELIM")){
+                    nextToken();
+                    expressao();
+                }   break;
+            case "LEIA":
+                nextToken();
+                if(token.getToken().equals("ID"))
+                    nextToken();
+                break;
+            case "ESCREVA":
+                nextToken();
+                expressao();
+                break;
+            default:
+                System.out.println("erro");
+                break;
+        }
+    }
+    
+    void expressao(){
+        
     }
 
 }
