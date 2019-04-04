@@ -99,34 +99,34 @@ public class Lexer {
                         addToken("ATRIB", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '+') {
-                        addToken("OPR_AR", String.valueOf(caracter));
+                        addToken("SOMA", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '*') {
-                        addToken("OPR_AR", String.valueOf(caracter));
+                        addToken("MULT", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '%') {
-                        addToken("OPR_AR", String.valueOf(caracter));
+                        addToken("REST", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '-') {
-                        addToken("OPR_AR", String.valueOf(caracter));
+                        addToken("SUBR", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '/') {
-                        addToken("OPR_AR", String.valueOf(caracter));
+                        addToken("DIVI", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '(') {
-                        addToken("DELIM", String.valueOf(caracter));
+                        addToken("PARE", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == ')') {
-                        addToken("DELIM", String.valueOf(caracter));
+                        addToken("PARD", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == ',') {
-                        addToken("DELIM", String.valueOf(caracter));
+                        addToken("VIRG", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == ';') {
-                        addToken("DELIM", String.valueOf(caracter));
+                        addToken("PVIR", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else if (caracter == '.') {
-                        addToken("DELIM", String.valueOf(caracter));
+                        addToken("PONT", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else {
                         item = fragmento;

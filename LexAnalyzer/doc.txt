@@ -1,6 +1,5 @@
 x = 25;
 y = 52;
 word = oi;
-int dras;
 x = x - y;
-leia (w);
+leia w;

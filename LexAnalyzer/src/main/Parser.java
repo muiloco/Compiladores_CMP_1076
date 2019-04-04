@@ -33,8 +33,6 @@ public class Parser {
     
     void SinAnalyzer(){
         listaInstrucoes();
-        if(this.pos+1 == listaDeToken.size())
-            System.out.println("main.Parser.SinAnalyzer()");
     }
 
     //----------------------PRODUÇÕES---------------------
@@ -42,13 +40,13 @@ public class Parser {
      */
     void listaInstrucoes() {
         instrucao();
-        if (this.token.getToken().equals("DELIM")) {
+        if (this.token.getValor().equals(";")) {
             nextToken();
             listaInstrucoes();
-        } else if(this.listaDeToken.size() != this.pos-1) {
-            nextToken();
+            System.out.println(this.pos);
+        } else if(this.listaDeToken.size() == this.pos+1) {   
         } else {
-            System.out.println("erro");
+            System.out.println("erro1");
         }
     }
     /*
@@ -61,7 +59,7 @@ public class Parser {
         switch (this.token.getToken()) {
             case "ID":
                 nextToken();
-                if(this.token.getToken().equals("DELIM")){
+                if(this.token.getValor().equals("=")){
                     nextToken();
                     expressao();
                 }   break;
