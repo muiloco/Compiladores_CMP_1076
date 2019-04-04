@@ -6,7 +6,6 @@
 package main;
 
 import java.util.ArrayList;
-import jdk.nashorn.internal.ir.ContinueNode;
 
 /**
  *
@@ -30,6 +29,12 @@ public class Parser {
     void nextToken() {
         this.pos++;
         this.token = this.listaDeToken.get(this.pos);
+    }
+    
+    void SinAnalyzer(){
+        listaInstrucoes();
+        if(this.pos+1 == listaDeToken.size())
+            System.out.println("main.Parser.SinAnalyzer()");
     }
 
     //----------------------PRODUÇÕES---------------------
@@ -74,9 +79,63 @@ public class Parser {
                 break;
         }
     }
-    
+    /*expressao --> termo resto1*/
     void expressao(){
-        
+        termo();
+        resto1();
     }
-
+    /*resto1 -> + termo resto1 | - termo resto1 | E*/
+    void resto1(){
+        if(token.getValor().equals("+") || token.getValor().equals("-")){
+            nextToken();
+            termo();
+            resto1();
+        } else {
+            
+        }
+    }
+    /*termo -> fator resto2*/
+    void termo(){
+        fator();
+        resto2();
+    }
+    /*resto2 -> * fator resto2 | / fator resto2 | % fator resto2 | E */
+    void resto2(){
+        if(token.getValor().equals("*") || token.getValor().equals("/") || token.getValor().equals("%")){
+            nextToken();
+            fator();
+            resto2();
+        } else {
+            
+        }
+    }
+    /*fator -> base resto3*/
+    void fator(){
+        base();
+        resto3();
+    }
+    /*base -> NUM | ID | ( expressa )*/
+    void base(){
+        if(token.getToken().equals("ID") || token.getToken().equals("NUM")){
+            nextToken();
+        } else if(token.getValor().equals("(")){
+            nextToken();
+            expressao();
+            if(token.getValor().equals(")"))
+                nextToken();
+            else
+                System.out.println("erro");
+        } else {
+            System.out.println("erro");
+        }
+    }
+    /*resto3 -> ^ expressao | E*/
+    void resto3(){
+        if(token.getValor().equals("^")){
+            nextToken();
+            expressao();
+        } else {
+            
+        }
+    }
 }

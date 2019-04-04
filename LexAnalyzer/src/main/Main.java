@@ -9,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 /**
  *
  * @author Fernando R
@@ -30,9 +28,8 @@ public class Main {
         while ((linha = arquivoLer.readLine()) != null) {
             doc += linha;
         }
-        Lexer.LexAnalyzer(doc);
-        Lexer.imprimirLista();
-        System.out.println("------------------MINHA HASH-------------------");
-        Lexer.imprimirHash();
+        Parser x = new Parser(doc);
+        x.SinAnalyzer();
+    
     }
 }

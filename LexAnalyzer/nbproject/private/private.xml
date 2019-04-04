@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Php003/Desktop/Compiladores_CMP_1076/LexAnalyzer/src/main/Lexer.java</file>
-            <file>file:/C:/Users/Php003/Desktop/Compiladores_CMP_1076/LexAnalyzer/src/main/PalavrasReservadas.java</file>
-            <file>file:/C:/Users/Php003/Desktop/Compiladores_CMP_1076/LexAnalyzer/src/main/Regex.java</file>
-            <file>file:/C:/Users/Php003/Desktop/Compiladores_CMP_1076/LexAnalyzer/src/main/Main.java</file>
-            <file>file:/C:/Users/Php003/Desktop/Compiladores_CMP_1076/LexAnalyzer/src/main/Parser.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/PalavrasReservadas.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/Token.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/Main.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/Regex.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/Parser.java</file>
+            <file>file:/C:/Users/Pichau/Desktop/Coisa%20faculdade/Compiladores/Compiladores_CMP_1076/LexAnalyzer/src/main/Lexer.java</file>
         </group>
     </open-files>
 </project-private>
