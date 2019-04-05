@@ -30,110 +30,122 @@ public class Parser {
         this.pos++;
         this.token = this.listaDeToken.get(this.pos);
     }
-    
-    void SinAnalyzer(){
+
+    void SinAnalyzer() throws Exception {
         listaInstrucoes();
     }
 
     //----------------------PRODUÇÕES---------------------
     /*Lista.instruções -> instrução ; Lista.instruções | E
      */
-    void listaInstrucoes() {
+    void listaInstrucoes() throws Exception {
         instrucao();
         if (this.token.getValor().equals(";")) {
-            nextToken();
-            listaInstrucoes();
-            System.out.println(this.pos);
-        } else if(this.listaDeToken.size() == this.pos+1) {   
+            if (this.listaDeToken.size() != this.pos + 1) {
+                nextToken();
+                listaInstrucoes();
+            } else {
+                System.out.println("Cod. Valido!!!");
+                System.out.println("N. de Tokens analisados:" + this.pos);
+            }
         } else {
-            System.out.println("erro1");
+            throw new Exception("Teu codigo ta errado!!!");
         }
     }
+
     /*
     instrução -> ID = expressão
               -> LEIA ID
               -> ESCREVA expressão
-    */
-    
-    void instrucao() {
+     */
+    void instrucao() throws Exception {
         switch (this.token.getToken()) {
             case "ID":
                 nextToken();
-                if(this.token.getValor().equals("=")){
+                if (this.token.getValor().equals("=")) {
                     nextToken();
                     expressao();
-                }   break;
+                }
+                break;
             case "LEIA":
                 nextToken();
-                if(token.getToken().equals("ID"))
+                if (token.getToken().equals("ID")) {
                     nextToken();
+                }
                 break;
             case "ESCREVA":
                 nextToken();
                 expressao();
                 break;
             default:
-                System.out.println("erro");
-                break;
+                throw new Exception("Teu codigo esta errado - instrução");
         }
     }
+
     /*expressao --> termo resto1*/
-    void expressao(){
+    void expressao() throws Exception {
         termo();
         resto1();
     }
+
     /*resto1 -> + termo resto1 | - termo resto1 | E*/
-    void resto1(){
-        if(token.getValor().equals("+") || token.getValor().equals("-")){
+    void resto1() throws Exception {
+        if (token.getValor().equals("+") || token.getValor().equals("-")) {
             nextToken();
             termo();
             resto1();
         } else {
-            
+
         }
     }
+
     /*termo -> fator resto2*/
-    void termo(){
+    void termo() throws Exception {
         fator();
         resto2();
     }
+
     /*resto2 -> * fator resto2 | / fator resto2 | % fator resto2 | E */
-    void resto2(){
-        if(token.getValor().equals("*") || token.getValor().equals("/") || token.getValor().equals("%")){
+    void resto2() throws Exception {
+        if (token.getValor().equals("*") || token.getValor().equals("/") || token.getValor().equals("%")) {
             nextToken();
             fator();
             resto2();
         } else {
-            
+
         }
     }
+
     /*fator -> base resto3*/
-    void fator(){
+    void fator() throws Exception {
         base();
         resto3();
     }
+
     /*base -> NUM | ID | ( expressa )*/
-    void base(){
-        if(token.getToken().equals("ID") || token.getToken().equals("NUM")){
+    void base() throws Exception{
+        if (token.getToken().equals("ID") || token.getToken().equals("NUM")) {
             nextToken();
-        } else if(token.getValor().equals("(")){
+        } else if (token.getValor().equals("(")) {
             nextToken();
             expressao();
-            if(token.getValor().equals(")"))
+            if (token.getValor().equals(")")) {
                 nextToken();
-            else
-                System.out.println("erro");
+            } else {
+                throw new Exception("Erro no cod -- base");
+            }
         } else {
-            System.out.println("erro");
+            throw new Exception("Erro no cod -- base");
         }
     }
+
     /*resto3 -> ^ expressao | E*/
-    void resto3(){
-        if(token.getValor().equals("^")){
+    void resto3() throws Exception{
+        if (token.getValor().equals("^")) {
             nextToken();
             expressao();
         } else {
-            
+
         }
     }
 }

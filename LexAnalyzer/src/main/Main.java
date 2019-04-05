@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 /**
  *
  * @author Fernando R
@@ -29,7 +30,11 @@ public class Main {
             doc += linha;
         }
         Parser x = new Parser(doc);
-        x.SinAnalyzer();
+        try {
+            x.SinAnalyzer();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     
     }
 }

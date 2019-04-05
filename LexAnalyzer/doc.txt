@@ -1,5 +1,6 @@
 x = 25;
 y = 52;
-word = oi;
+word = 10;
 x = x - y;
-leia w;
+leia w
+escreva jv;
