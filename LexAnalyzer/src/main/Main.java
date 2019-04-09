@@ -35,10 +35,5 @@ public class Main {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-<<<<<<< HEAD
-        
-=======
-    
->>>>>>> 8e3336dbb1bb984eb0b7325447d0e1f834af80b2
     }
 }

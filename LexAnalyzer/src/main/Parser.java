@@ -69,19 +69,13 @@ public class Parser {
                 if (this.token.getValor().equals("=")) {
                     nextToken();
                     expressao();
-<<<<<<< HEAD
                     Lexer.addHash(this.token.Valor, pilha.pop().toString());
-=======
->>>>>>> 8e3336dbb1bb984eb0b7325447d0e1f834af80b2
                 }
                 break;
             case "LEIA":
                 nextToken();
                 if (token.getToken().equals("ID")) {
-<<<<<<< HEAD
                     Lexer.addHash(this.token.Valor, pilha.pop().toString());
-=======
->>>>>>> 8e3336dbb1bb984eb0b7325447d0e1f834af80b2
                     nextToken();
                 }
                 break;
@@ -104,9 +98,20 @@ public class Parser {
     /*resto1 -> + termo resto1 | - termo resto1 | E*/
     void resto1() throws Exception {
         if (token.getValor().equals("+") || token.getValor().equals("-")) {
+            String Token = this.token.getToken();
             nextToken();
             termo();
             resto1();
+            
+            float x1 = Float.valueOf(this.pilha.pop().toString());
+            float x2 = Float.valueOf(this.pilha.pop().toString());
+            if(Token.equals("SOMA")){
+                float result = x1 + x2;
+                this.pilha.push(result);
+            } else {
+                float result = x1 - x2;
+                this.pilha.push(result);
+            }
         } else {
 
         }
@@ -121,9 +126,34 @@ public class Parser {
     /*resto2 -> * fator resto2 | / fator resto2 | % fator resto2 | E */
     void resto2() throws Exception {
         if (token.getValor().equals("*") || token.getValor().equals("/") || token.getValor().equals("%")) {
+            String Token = this.token.getToken();
             nextToken();
             fator();
             resto2();
+            float x2 = Float.valueOf(this.pilha.pop().toString());
+            float x1 = Float.valueOf(this.pilha.pop().toString());
+            switch (Token) {
+                case "MULT":
+                    {
+                        float result = x1 * x2;
+                        this.pilha.push(result);
+                        break;
+                    }
+                case "DIVI":
+                    {
+                        float result = x1 / x2;
+                        this.pilha.push(result);
+                        break;
+                    }
+                case "REST":
+                    {
+                        float result = x1 % x2;
+                        this.pilha.push(result);
+                        break;
+                    }
+                default:
+                    throw new Exception("Deu Pau!!");
+            }
         } else {
 
         }
@@ -136,7 +166,7 @@ public class Parser {
     }
 
     /*base -> NUM | ID | ( expressa )*/
-    void base() throws Exception{
+    void base() throws Exception {
         if (token.getToken().equals("ID") || token.getToken().equals("NUM")) {
             nextToken();
         } else if (token.getValor().equals("(")) {
@@ -153,10 +183,14 @@ public class Parser {
     }
 
     /*resto3 -> ^ expressao | E*/
-    void resto3() throws Exception{
+    void resto3() throws Exception {
         if (token.getValor().equals("^")) {
             nextToken();
             expressao();
+            float x2 = Float.valueOf(this.pilha.pop().toString());
+            float x1 = Float.valueOf(this.pilha.pop().toString());
+            float result = (float) Math.pow(x1, x2);
+            this.pilha.push(result);
         } else {
 
         }
