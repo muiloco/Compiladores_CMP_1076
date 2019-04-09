@@ -6,6 +6,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -15,6 +17,7 @@ public class Parser {
 
     String entrada;
     ArrayList<Token> listaDeToken;
+    Stack pilha;
     int pos;
     Token token;
 
@@ -22,6 +25,7 @@ public class Parser {
         this.entrada = entrada;
         Lexer.LexAnalyzer(entrada);
         this.listaDeToken = Lexer.getListaDeToken();
+        this.pilha = new Stack();
         this.pos = 0;
         this.token = this.listaDeToken.get(this.pos);
     }
@@ -65,17 +69,26 @@ public class Parser {
                 if (this.token.getValor().equals("=")) {
                     nextToken();
                     expressao();
+<<<<<<< HEAD
+                    Lexer.addHash(this.token.Valor, pilha.pop().toString());
+=======
+>>>>>>> 8e3336dbb1bb984eb0b7325447d0e1f834af80b2
                 }
                 break;
             case "LEIA":
                 nextToken();
                 if (token.getToken().equals("ID")) {
+<<<<<<< HEAD
+                    Lexer.addHash(this.token.Valor, pilha.pop().toString());
+=======
+>>>>>>> 8e3336dbb1bb984eb0b7325447d0e1f834af80b2
                     nextToken();
                 }
                 break;
             case "ESCREVA":
                 nextToken();
                 expressao();
+                System.out.println("consola >> " + this.pilha.pop());
                 break;
             default:
                 throw new Exception("Teu codigo esta errado - instrução");
