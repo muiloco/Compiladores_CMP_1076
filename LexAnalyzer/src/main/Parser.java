@@ -5,8 +5,10 @@
  */
 package main;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -75,14 +77,19 @@ public class Parser {
             case "LEIA":
                 nextToken();
                 if (token.getToken().equals("ID")) {
-                    Lexer.addHash(this.token.Valor, pilha.pop().toString());
+                    InputStream is = System.in;
+                    System.out.println("Digite o Valor da Variavel:");
+                    InputStreamReader isr = new InputStreamReader(is);
+                    BufferedReader br = new BufferedReader(isr);
+                    float valor = Float.valueOf(br.readLine());
+                    Lexer.addHash(this.token.getValor(), String.valueOf(valor));
                     nextToken();
                 }
                 break;
             case "ESCREVA":
                 nextToken();
                 expressao();
-                System.out.println("consola >> " + this.pilha.pop());
+                System.out.println("consola >> " + Lexer.variaveis.get(token.getValor()));
                 break;
             default:
                 throw new Exception("Teu codigo esta errado - instrução");
@@ -168,6 +175,12 @@ public class Parser {
     /*base -> NUM | ID | ( expressa )*/
     void base() throws Exception {
         if (token.getToken().equals("ID") || token.getToken().equals("NUM")) {
+            if (token.getToken().equals("ID")){
+                float valor = Float.valueOf(Lexer.variaveis.get(token.getValor()));
+                pilha.push(valor);
+            } else {
+                pilha.push(Float.valueOf(token.getValor()));
+            }
             nextToken();
         } else if (token.getValor().equals("(")) {
             nextToken();

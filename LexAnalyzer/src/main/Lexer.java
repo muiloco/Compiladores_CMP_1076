@@ -128,6 +128,9 @@ public class Lexer {
                     } else if (caracter == '.') {
                         addToken("PONT", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
+                    } else if (caracter == '^') {
+                        addToken("POW", String.valueOf(caracter));
+                        fragmento = fragmento.substring(1);
                     } else {
                         item = fragmento;
                         fragmento = fragmento.substring(1);

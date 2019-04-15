@@ -1,6 +1,5 @@
-x = 25;
-y = 52;
-word = 10;
-x = x - y;
-leia w
-escreva jv;
+leia x ;
+leia y ;
+h = x ^ y ;
+w = ( h - x ) / y ;
+escreva w ;
