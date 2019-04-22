@@ -45,7 +45,6 @@ public class Lexer {
         Lexer.variaveis = new HashMap<>();
         String texto[] = doc.split("\\s+");
         Matcher regraREGISTER, regraNUM, regraOPERATOR;
-        String item;
         char caracter;
         for (String fragmento : texto) {
             if (fragmento.length() > 0) {
@@ -56,27 +55,23 @@ public class Lexer {
                     caracter = fragmento.charAt(0);
                     if (regraOPERATOR.find()) {
                         if (PalavrasReservadas.Ereservada(regraOPERATOR.group(1).toUpperCase())) {
-                            item = regraREGISTER.group(1);
-                            addToken(PalavrasReservadas.ReturnReservada(item.toUpperCase()), item);
-                            fragmento = fragmento.substring(item.length());
+                            addToken(PalavrasReservadas.ReturnReservada(regraOPERATOR.group(1).toUpperCase()), regraOPERATOR.group(1));
+                            fragmento = fragmento.substring(regraOPERATOR.group(1).length());
                         } else {
                             throw new Exception("Comando não identificado:" + regraOPERATOR.group(1));
                         }
                     } else if (regraREGISTER.find()) {
-                        item = regraREGISTER.group(1);
                         addToken(Regex.REGISTER.toString(), regraREGISTER.group(1));
-                        addHash(item, "0");
-                        fragmento = fragmento.substring(item.length());
+                        addHash(regraREGISTER.group(1), "0");
+                        fragmento = fragmento.substring(regraREGISTER.group(1).length());
                     } else if (regraNUM.find()) {
-                        item = regraNUM.group(1);
                         addToken(Regex.NUM.toString(), regraNUM.group(1));
-                        fragmento = fragmento.substring(item.length());
+                        fragmento = fragmento.substring(regraNUM.group(1).length());
                     } else if (caracter == ',') {
                         addToken("VIRG", String.valueOf(caracter));
                         fragmento = fragmento.substring(1);
                     } else {
-                        item = fragmento;
-                        throw new Exception("Codigo errado!!");
+                        throw new Exception("Codigo errado!!-" + fragmento);
                     }
                 }
             }

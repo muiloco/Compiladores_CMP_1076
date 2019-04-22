@@ -1,5 +1,5 @@
-add r1 , 10
-add r3 , 5
-mul r6 , r1 , r3
+add r1 10
+add r3 5
+mul r6 r1 r3
 read r4
 write r6

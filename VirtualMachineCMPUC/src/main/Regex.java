@@ -12,7 +12,7 @@ package main;
 public enum Regex {
     REGISTER("^([r]{1}([0-9]{1,2}))"),
     NUM("^([\\-]?[0-9]+([\\.][0-9]+)?)"),
-    OPERATOR("^([a-zA-Z])+");
+    OPERATOR("^([a-zA-Z]([a-zA-Z])+)");
    
     String descricao;
 

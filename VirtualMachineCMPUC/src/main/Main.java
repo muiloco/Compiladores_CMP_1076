@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -32,10 +34,10 @@ public class Main {
         }
         try {
             Lexer.LexAnalyzer(doc);
-            Lexer.imprimirLista();
         } catch (Exception ex) {
-            System.out.println(ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+         Lexer.imprimirLista();
     }
     
 }
